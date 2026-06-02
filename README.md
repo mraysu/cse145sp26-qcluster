@@ -24,9 +24,9 @@ Embedded development boards such as the Rubik Pi 3, designed by Qualcomm, are po
 2 additional folders store the files used to progress this project in different ways. The hardware folder contains anything related to the development of the power system, including PCB files and spreadsheets related to the testing of 5V GPIO on the Rubik Pi. The software folder contains any scripts or data from benchmarking of the V0 cluster. 
 
 ## Team Members
-Aarnav Gujjari - CSE 145 Student
-Alain Zhang - CSE 199 Student
-Ferrari Guan
-Michael Sullivan- CSE 145 Student
-Yian Zhuang - CSE 145 Student
-Yves Mojica - CSE 145 Student
+- Aarnav Gujjari - CSE 145 Student
+- Alain Zhang - CSE 199 Student
+- Ferrari Guan
+- Michael Sullivan- CSE 145 Student
+- Yian Zhuang - CSE 145 Student
+- Yves Mojica - CSE 145 Student
