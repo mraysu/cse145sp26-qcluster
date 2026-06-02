@@ -21,15 +21,7 @@ Embedded development boards such as the Rubik Pi 3, designed by Qualcomm, are po
 
 ## Setup
 
-2 additional folders store the files used to progress this project in different ways. The hardware folder contains anything related to the development of the power system, including PCB files and spreadsheets related to the testing of 5V GPIO on the Rubik Pi. The software folder contains any scripts or data from benchmarking of the V0 cluster. There is also an image folder that holds important screenshots or pictures of any physical hardware present. The rest of the repo provides a very brief overview of the V0 Qualcomm Cluster and the progress of the V1 cluster.
-
-## V0 Qualcomm Cluster
-
-
-
-## V1 Qualcomm Cluster
-
-
+2 additional folders store the files used to progress this project in different ways. The hardware folder contains anything related to the development of the power system, including PCB files and spreadsheets related to the testing of 5V GPIO on the Rubik Pi. The software folder contains any scripts or data from benchmarking of the V0 cluster. 
 
 ## Team Members
 Aarnav Gujjari - CSE 145 Student
