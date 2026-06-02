@@ -1,0 +1,78 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: node-benchmarker
+spec:
+  parallelism: 13
+  completions: 13
+  completionMode: Indexed
+  template:
+    metadata:
+      labels:
+        name: node-benchmarker
+    spec:
+      restartPolicy: Never
+      hostNetwork: true 
+      securityContext:
+        runAsUser: 0
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chmod -R 777 /results"]
+        volumeMounts:
+        - name: output-volume
+          mountPath: /results
+      containers:
+      - name: runner
+        image: ghcr.io/kastnerrg/cse160-opencl:gpu-adreno
+        env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            # make dirs
+            WORK_DIR="/tmp/repo"
+            rm -rf "$WORK_DIR" # Clean up if old run exists
+
+            # install tests
+            apt update && apt install stress-ng -y
+
+            # clone scripts
+            git clone https://github.com/mraysu/qcluster-benchmarks-scripts.git "$WORK_DIR"
+            cd "$WORK_DIR"
+            git checkout mraysu
+            chmod +x *.sh
+
+            FINAL_DEST="/results/${NODE_NAME}"
+            mkdir -p "$FINAL_DEST"
+
+            # scripts will automatically log to FINAL_DEST, so dont need to worry about early pod death
+            ./cpu_benchmark.sh "$FINAL_DEST"
+
+            echo "Benchmark complete for ${NODE_NAME}."
+            sleep 10
+        volumeMounts:
+        - name: output-volume
+          mountPath: /results
+
+      # volume is mounted on the node itself, NOT the control plane. 
+      # logs must be copied back manually
+      # TODO: set up NFS to auto-write to control node
+      volumes:
+      - name: output-volume
+        hostPath:
+          path: /home/qcluster-admin/cpu-benchmarking/logs
+          type: DirectoryOrCreate
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - node-benchmarker
+            topologyKey: "kubernetes.io/hostname"
