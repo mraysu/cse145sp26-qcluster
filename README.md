@@ -29,7 +29,13 @@ Kubernetes-Friendly Deploy: https://github.com/SirPuddinlot/qcluster-benchmarks-
 
 ### Deployment Service: `benchmark-ds.yaml`
 
-A key challenge of this project is ensuring electrical stability across entire trays of Rubik Pis powered by a single power supply. Alongside individual Rubik Pis' power draw and performance metrics, we test collective Rubik Pi performance at scale. We have developed and maintained a repository of benchmark and metric collection scripts. Creating our own automation benefits us by granting greater granular control over benchmark types and configurations, and metric data format and resolution. We create a Deployment Service kubernetes configuration that can simultaneously deploy these benchmarks to all running nodes, one pod per node. By running all nodes simultaneously, we can emulate a performance-demanding workload on the cluster and collect node-level metrics.
+A key challenge of this project is ensuring electrical stability across entire trays of Rubik Pis powered by a single power supply. Alongside individual Rubik Pis' power draw and performance metrics, we test collective Rubik Pi performance at scale. We have developed and maintained a repository of benchmark and metric collection scripts. Creating our own automation benefits us by granting greater granular control over benchmark types and configurations, and metric data format and resolution. We create a deployment service kubernetes configuration that can simultaneously deploy these benchmarks to all running nodes, one pod per node. By running all nodes simultaneously, we can emulate a performance-demanding workload on the cluster and collect timestamped node-level metrics.
+
+<p align="center">
+    High-level Diagram
+    <img src="Images/ds-setup.png" alt="ds-setup.png" width="100%">
+    <img src="Images/cluster-alltemps.png" alt="cluster-alltemps.png" width="100%">
+</p>
 
 ## Team Members
 - Aarnav Gujjari - CSE 145 Student
