@@ -39,7 +39,7 @@ Benchmarking Suite: https://github.com/AlainZhangStudent/cse199-benchmarking-scr
 
 Kubernetes-Friendly Deploy: https://github.com/SirPuddinlot/qcluster-benchmarks-scripts/tree/mraysu
 
-Collected Metrics: https://drive.google.com/file/d/1UJVtf90dQDXijVFVBeuZRzG52QzeNRxQ/view
+Version 0 Collected Metrics: https://drive.google.com/file/d/1UJVtf90dQDXijVFVBeuZRzG52QzeNRxQ/view
 
 ### Deployment Service: `benchmark-ds.yaml`
 
