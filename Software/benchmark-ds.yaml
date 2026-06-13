@@ -41,16 +41,16 @@ spec:
             apt update && apt install stress-ng -y
 
             # clone scripts
-            git clone https://github.com/mraysu/qcluster-benchmarks-scripts.git "$WORK_DIR"
+            git clone https://github.com/mraysu/cse199-benchmarks-scripts.git "$WORK_DIR"
             cd "$WORK_DIR"
             git checkout mraysu
             chmod +x *.sh
 
-            FINAL_DEST="/results/${NODE_NAME}"
+            FINAL_DEST="/results/crash_test_${NODE_NAME}"
             mkdir -p "$FINAL_DEST"
 
             # scripts will automatically log to FINAL_DEST, so dont need to worry about early pod death
-            ./cpu_benchmark.sh "$FINAL_DEST"
+            ./crash_test.sh "$FINAL_DEST"
 
             echo "Benchmark complete for ${NODE_NAME}."
             sleep 10
